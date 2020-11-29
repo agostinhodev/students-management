@@ -73,11 +73,20 @@
 
             </b-form>
 
-             <b-button size="sm" @click="handleGoBack()" class="btn btn-warning">
+            <b-button size="sm" @click="handleGoBack()" class="btn btn-warning">
                 
                 Go Back
 
             </b-button>
+
+            &nbsp;
+
+            <b-button size="sm" @click="handleDelete()" class="btn btn-danger">
+                
+                Delete
+
+            </b-button>
+
 
           </b-card-text>
           
@@ -155,6 +164,27 @@ export default {
 
             });
 
+
+        },
+
+        handleDelete(){
+
+          if(confirm('Do you really delete this user?')){
+
+            api.delete(`students/${this.$route.params.id}`)
+            .then(()=>{
+
+                alert('The user was deleted successfully')
+
+            })
+            .catch(()=>{
+
+                alert('Could not delete user');
+
+
+            });
+
+          }
 
         },
 
